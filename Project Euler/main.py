@@ -1,3 +1,4 @@
+# Problem 1
 def multiple_sum(n):
     sum = 0
     for i in range(n):
@@ -7,6 +8,7 @@ def multiple_sum(n):
     return sum
 
 
+# Problem 2
 def generate_fibonacci(limit):
     current_number = 1
     previous_number = 1
@@ -32,6 +34,7 @@ def sum_even(array):
     return sum
 
 
+# Problem 3
 def is_prime(number):
     for i in range(int(number / 2)):
         if not number % (i + 1) and i + 1 != 1:
@@ -59,6 +62,7 @@ def prime_factors(number):
             return factors
 
 
+# Problem 4
 def is_palindrome(number):
     if str(number) == str(number)[::-1]:
         return True
@@ -76,6 +80,7 @@ def highest_palindrome(min, max):
     return highest
     
 
+# Problem 5
 def lowest_multiple(max):
     number = 0
     while True:
@@ -86,5 +91,3 @@ def lowest_multiple(max):
             if i == max:
                 return number
     
-
-print(prime_factors(6945679856758765957697820))
