@@ -14,3 +14,29 @@ function sumOfSquaresAndSquareOfSum(limit) {
         squaredSum: sum**2
     };
 }
+
+// Problem 7
+function isPrime(number) {
+    for (let i = 2; i < (number ** 0.5) + 1; i++) {
+        if (number % i === 0 && number !== i) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function nthPrimeNumber(n) {
+    let count = 0;
+    let number = 2;
+
+    while (count < n) {
+        if (isPrime(number)) {
+            count++;
+        }
+        if (count === n) {
+            return number;
+        }
+        number += 1;
+    }
+}
+
