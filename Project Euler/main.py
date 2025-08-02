@@ -1,4 +1,5 @@
 # Problem 1
+# Calculate the sum of all multiples of 3 and 5 up until a limit
 def multiple_sum(n):
     sum = 0
     for i in range(n):
@@ -8,7 +9,7 @@ def multiple_sum(n):
     return sum
 
 
-# Problem 2
+# Problem 2e
 def generate_fibonacci(limit):
     current_number = 1
     previous_number = 1
@@ -25,6 +26,7 @@ def generate_fibonacci(limit):
     
     return sequence
 
+# Find the sum of all even numbers in the given array
 def sum_even(array):
     sum = 0
     for number in array:
@@ -44,7 +46,7 @@ def is_prime(number):
 
 
 def prime_factors(number):
-    if is_prime(number):
+    if is_prime(number):  # If a number is prime then it has no prime factors
         return [number]
     
     factors = []
@@ -54,7 +56,8 @@ def prime_factors(number):
         start = 3
         step = 2
 
-    for i in range(start, int(number / 2), step):  # Avoid dividing by 1 or 0
+    # Recursively find all prime factors of the number
+    for i in range(start, int(number / 2), step):
         if not number % (i) and is_prime(i):
             factors.append(i)
             factors.extend(prime_factors(number / (i)))
@@ -68,7 +71,8 @@ def is_palindrome(number):
         return True
     return False
 
-
+# Find the highest palindrome that can be made by multiplying any 2 numbers
+# Within the range given
 def highest_palindrome(min, max):
     highest = 0
     for i in range(min, max):
@@ -81,6 +85,7 @@ def highest_palindrome(min, max):
     
 
 # Problem 5
+# Find the lowest number that is a multiple of all numbers up to the given max
 def lowest_multiple(max):
     number = 0
     while True:
@@ -88,6 +93,8 @@ def lowest_multiple(max):
         for i in range(1, max + 1):
             if number % i:
                 break
-            if i == max:
+
+            # If this point is reached then the number is fully divisable 
+            if i == max: 
                 return number
     
