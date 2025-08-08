@@ -1,5 +1,5 @@
 # Problem 1
-# Calculate the sum of all multiples of 3 and 5 up until a limit
+# Calculate the sum of all multiples of 3 and 5 up until a limit
 def multiple_sum(n):
     sum = 0
     for i in range(n):
@@ -9,7 +9,7 @@ def multiple_sum(n):
     return sum
 
 
-# Problem 2e
+# Problem 2
 def generate_fibonacci(limit):
     current_number = 1
     previous_number = 1
@@ -23,8 +23,9 @@ def generate_fibonacci(limit):
             previous_number = sequence[-2]
         current_number = next_number
         next_number = current_number + previous_number
-    
+
     return sequence
+
 
 # Find the sum of all even numbers in the given array
 def sum_even(array):
@@ -32,7 +33,7 @@ def sum_even(array):
     for number in array:
         if not number % 2:
             sum += number
-    
+
     return sum
 
 
@@ -41,14 +42,14 @@ def is_prime(number):
     for i in range(int(number / 2)):
         if not number % (i + 1) and i + 1 != 1:
             return False
-        
+
     return True
 
 
 def prime_factors(number):
     if is_prime(number):  # If a number is prime then it has no prime factors
         return [number]
-    
+
     factors = []
     start = 2
     step = 1
@@ -61,7 +62,7 @@ def prime_factors(number):
         if not number % (i) and is_prime(i):
             factors.append(i)
             factors.extend(prime_factors(number / (i)))
-            
+
             return factors
 
 
@@ -70,6 +71,7 @@ def is_palindrome(number):
     if str(number) == str(number)[::-1]:
         return True
     return False
+
 
 # Find the highest palindrome that can be made by multiplying any 2 numbers
 # Within the range given
@@ -82,7 +84,7 @@ def highest_palindrome(min, max):
                 highest = product
 
     return highest
-    
+
 
 # Problem 5
 # Find the lowest number that is a multiple of all numbers up to the given max
@@ -94,7 +96,6 @@ def lowest_multiple(max):
             if number % i:
                 break
 
-            # If this point is reached then the number is fully divisable 
-            if i == max: 
+            # If this point is reached then the number is fully divisable
+            if i == max:
                 return number
-    
