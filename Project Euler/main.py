@@ -99,3 +99,70 @@ def lowest_multiple(max):
             # If this point is reached then the number is fully divisable
             if i == max:
                 return number
+
+
+# Problem 11
+def find_product(array):
+    product = 1
+    for i in array:
+        product *= i
+
+    return product
+
+
+# Return the highest product of 4 adjacent numbers
+def highest_adjacency(numbers):
+    highest = 0
+
+    # k points to the row, i points to the column
+    for k in range(len(numbers)):
+        row = numbers[k]
+        for i in range(len(row)):
+            number = row[i]
+            adjacancies = []
+
+            # Cant have 4 adjacent diagonal numbers after the last 3 columns
+            # Or rows
+            if i < len(row) - 3 and k < len(numbers) - 3:
+                diagonal_adjacency_right = [
+                    number,
+                    numbers[k - 1][i + 1],
+                    numbers[k - 2][i + 2],
+                    numbers[k - 3][i + 3],
+                ]
+                adjacancies.append(diagonal_adjacency_right)
+
+            if i < len(row) - 3:
+                horizontal_adjacency = [
+                    number,
+                    row[i + 1],
+                    row[i + 2],
+                    row[i + 3],
+                ]
+                adjacancies.append(horizontal_adjacency)
+
+            # Cant go back by 3 columns if we are not at least at the 4th column
+            if i > 2 and k < len(numbers) - 3:
+                diagonal_adjacency_left = [
+                    number,
+                    numbers[k - 1][i - 1],
+                    numbers[k - 2][i - 2],
+                    numbers[k - 3][i - 3],
+                ]
+                adjacancies.append(diagonal_adjacency_left)
+
+            if k < len(numbers) - 3:
+                vertical_adjacency = [
+                    number,
+                    numbers[k + 1][i],
+                    numbers[k + 2][i],
+                    numbers[k + 3][i],
+                ]
+                adjacancies.append(vertical_adjacency)
+
+            # Find the highest product
+            for list in adjacancies:
+                if find_product(list) > highest:
+                    highest = find_product(list)
+
+    return highest
