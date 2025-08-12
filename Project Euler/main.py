@@ -190,3 +190,17 @@ def first_triangle_number(number):
 
         if number_of_factors(triangle_number) > number:
             return triangle_number
+
+
+# Problem 13
+# Return the first 10 digits of the sum of n 50 digit numbers
+def first_ten_digits(number):
+    index = 0
+    sum = 0
+
+    # Add together sections of 50 digits
+    while index < len(number):
+        sum += int(number[index : index + 50])
+        index += 50
+
+    return str(sum)[0:10]
