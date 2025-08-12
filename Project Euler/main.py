@@ -166,3 +166,27 @@ def highest_adjacency(numbers):
                     highest = find_product(list)
 
     return highest
+
+
+# Problem 12
+# Return the number of factors a number has
+def number_of_factors(number):
+    count = 1
+    for i in range(2, int((number**0.5) + 1)):
+        if not number % i:
+            count += 2
+
+    return count
+
+
+# Return the first triangle number with over n factors
+def first_triangle_number(number):
+    current_number = 0
+    triangle_number = 0
+
+    while True:
+        current_number += 1
+        triangle_number += current_number
+
+        if number_of_factors(triangle_number) > number:
+            return triangle_number
