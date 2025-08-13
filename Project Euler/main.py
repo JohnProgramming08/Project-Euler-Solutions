@@ -123,6 +123,7 @@ def highest_adjacency(numbers):
 
             # Cant have 4 adjacent diagonal numbers after the last 3 columns
             # Or rows
+            # 4 diagonal numbers to the bottom right
             if i < len(row) - 3 and k < len(numbers) - 3:
                 diagonal_adjacency_right = [
                     number,
@@ -132,6 +133,7 @@ def highest_adjacency(numbers):
                 ]
                 adjacancies.append(diagonal_adjacency_right)
 
+            # 4 horizontal numbers to the right in a row
             if i < len(row) - 3:
                 horizontal_adjacency = [
                     number,
@@ -142,6 +144,7 @@ def highest_adjacency(numbers):
                 adjacancies.append(horizontal_adjacency)
 
             # Cant go back by 3 columns if we are not at least at the 4th column
+            # 4 digonal numbers ot the bottom left
             if i > 2 and k < len(numbers) - 3:
                 diagonal_adjacency_left = [
                     number,
@@ -151,6 +154,7 @@ def highest_adjacency(numbers):
                 ]
                 adjacancies.append(diagonal_adjacency_left)
 
+            # 4 vertical numbers down in a column
             if k < len(numbers) - 3:
                 vertical_adjacency = [
                     number,
@@ -204,3 +208,36 @@ def first_ten_digits(number):
         index += 50
 
     return str(sum)[0:10]
+
+
+# Problem 14
+# Return the longest chain in collatz conjecture up to a start number of limit
+def longest_chain_starter(limit):
+    highest_length = 0
+    longest_starter = 0
+    checked = {}
+
+    for i in range(2, limit):
+        current = i
+        length = 0
+        # Even: n / 2, odd: 3n + 1
+        while current != 1:
+            # Avoid calculating for numbers that are already checked
+            if current in checked:
+                length += checked[current]
+                break
+
+            # Apply collatz ruless
+            if not current % 2:
+                current //= 2
+            else:
+                current = (current * 3) + 1
+
+            length += 1
+
+        checked[i] = length
+        if length > highest_length:
+            highest_length = length
+            longest_starter = i
+
+    return longest_starter
