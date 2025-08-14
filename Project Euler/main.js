@@ -96,3 +96,14 @@ function sumOfAllPrimes(limit) {
 	}
 	return sum;
 }
+// Problem 16
+// Return the sum of the digits of an exponent
+function digitSum(base, power) {
+	const digits = String(BigInt(base) ** BigInt(power));
+	let sum = 0;
+	for (let digit of digits) {
+		sum += parseInt(digit);
+	}
+
+	return sum;
+}
