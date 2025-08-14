@@ -241,3 +241,20 @@ def longest_chain_starter(limit):
             longest_starter = i
 
     return longest_starter
+
+
+# Problem 15
+# Return the factorial of a number
+def factorial(number):
+    if number == 1:
+        return number
+
+    product = factorial(number - 1)
+    return number * product
+
+
+# Return the number of paths to get from top left to right in a grid
+# Of size x size, no left or up movements
+# Using the binomial formula
+def number_of_paths(size):
+    return factorial(size * 2) / (factorial(size) ** 2)
