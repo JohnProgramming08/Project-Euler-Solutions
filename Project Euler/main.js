@@ -197,3 +197,70 @@ function maximumSum(pyramid, row, index) {
 		return rightSum + pyramid[row][index];
 	}
 }
+
+// Problem 19
+// Return the number of sundays that fell on the first of the month
+// From 1901 to 2000 inclusive
+function numberOfSundays() {
+	let year = 1900;
+	let month = 1;
+	let day = 1;
+	let monthDay = 1;
+	let count = 0;
+	const monthLengths = {
+		1: 31,
+		3: 31,
+		4: 30,
+		5: 31,
+		6: 30,
+		7: 31,
+		8: 31,
+		9: 30,
+		10: 31,
+		11: 30,
+		12: 31,
+	};
+
+	while (year !== 2001) {
+		if (day % 7 === 0 && monthDay === 1 && year > 1900) {
+			count++;
+		}
+
+		day++;
+		// Febuary
+		if (
+			// Not a leap year
+			monthDay === 28 &&
+			month === 2 &&
+			((year % 4 !== 0 && year % 100 !== 0) ||
+				(year % 400 !== 0 && year % 100 === 0))
+		) {
+			monthDay = 1;
+			month++;
+		} else if (
+			// Leap year
+			monthDay === 29 &&
+			month === 2 &&
+			(year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0))
+		) {
+			console.log(year);
+			monthDay = 1;
+			month++;
+		}
+		// Rest of the months
+		else if (monthLengths[month] === monthDay) {
+			monthDay = 1;
+			month++;
+		} else {
+			monthDay++;
+		}
+
+		// Check for the next year
+		if (month === 13) {
+			month = 1;
+			year++;
+		}
+	}
+
+	return count;
+}
