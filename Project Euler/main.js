@@ -243,7 +243,6 @@ function numberOfSundays() {
 			month === 2 &&
 			(year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0))
 		) {
-			console.log(year);
 			monthDay = 1;
 			month++;
 		}
@@ -263,4 +262,27 @@ function numberOfSundays() {
 	}
 
 	return count;
+}
+
+// Problem 20
+// Return the sum of all digits in the factorial of the given num
+function factorial(n, original) {
+	if (n === 1) {
+		return n;
+	}
+
+	const factorialNumber = BigInt(n) * BigInt(factorial(n - 1, original));
+
+	// Sum the digits of the factorial of the number
+	let sum = 0;
+	if (n === original) {
+		for (const digit of String(factorialNumber)) {
+			if (digit !== 'n') {
+				sum += parseInt(digit);
+			}
+		}
+		return sum;
+	}
+
+	return factorialNumber;
 }
