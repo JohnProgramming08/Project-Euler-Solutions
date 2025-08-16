@@ -179,3 +179,21 @@ function letterSum() {
 
 	return characterSum;
 }
+
+// Problem 18
+// Find the path with the maximum sum through brute force
+function maximumSum(pyramid, row, index) {
+	// Base case
+	if (row === pyramid.length - 1) {
+		return pyramid[row][index];
+	}
+
+	const rightSum = maximumSum(pyramid, row + 1, index + 1);
+	const leftSum = maximumSum(pyramid, row + 1, index);
+
+	if (leftSum > rightSum) {
+		return leftSum + pyramid[row][index];
+	} else {
+		return rightSum + pyramid[row][index];
+	}
+}
