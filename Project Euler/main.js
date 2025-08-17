@@ -266,7 +266,7 @@ function numberOfSundays() {
 
 // Problem 20
 // Return the sum of all digits in the factorial of the given num
-function factorial(n, original) {
+function factorialDigitSum(n, original) {
 	if (n === 1) {
 		return n;
 	}

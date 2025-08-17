@@ -1,5 +1,7 @@
 # Problem 1
 # Calculate the sum of all multiples of 3 and 5 up until a limit
+
+
 def multiple_sum(n):
     sum = 0
     for i in range(n):
@@ -285,3 +287,28 @@ def amicable_number_sum(n):
             amicable_numbers.append(sum2)
 
     return sum(amicable_numbers)
+
+
+# Problem 22
+# Sort the file of names alphabetically
+def name_sort(file_name):
+    with open(file_name, "r") as file:
+        contents = file.read()
+        names = sorted(contents.split(","))
+        return names
+
+
+# Return the sum of all name scores
+def sum_name_scores(names):
+    sum = 0
+    for i in range(len(names)):
+        name = names[i][1:-1].lower()
+
+        # Get the sum of the alphabetical positions of letters in each name
+        alphabetical_value = 0
+        for char in name:
+            alphabetical_value += ord(char) - 96
+
+        sum += (i + 1) * alphabetical_value
+
+    return sum
