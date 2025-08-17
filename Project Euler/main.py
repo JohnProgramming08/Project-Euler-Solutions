@@ -258,3 +258,30 @@ def factorial(number):
 # Using the binomial formula
 def number_of_paths(size):
     return factorial(size * 2) / (factorial(size) ** 2)
+
+
+# Problem 21
+# Return the sum of the divisors of a number
+def divisor_sum(number):
+    divisor_sum = 1
+    for i in range(2, int(number**0.5) + 1):
+        if not number % i:
+            divisor_sum += i
+            divisor_sum += number // i
+
+    return divisor_sum
+
+
+# Return the sum of all amicable numbers less than n
+def amicable_number_sum(n):
+    amicable_numbers = []
+
+    for i in range(1, n):
+        sum1 = divisor_sum(i)
+        sum2 = divisor_sum(sum1)
+        # Avoid duplicate amicable numbers in the list
+        if sum2 == i and i not in amicable_numbers and sum2 != sum1:
+            amicable_numbers.append(sum1)
+            amicable_numbers.append(sum2)
+
+    return sum(amicable_numbers)
