@@ -267,9 +267,11 @@ def number_of_paths(size):
 def divisor_sum(number):
     divisor_sum = 1
     for i in range(2, int(number**0.5) + 1):
-        if not number % i:
+        if not number % i and number // i != i:
             divisor_sum += i
             divisor_sum += number // i
+        elif not number % i:
+            divisor_sum += i
 
     return divisor_sum
 
@@ -310,5 +312,39 @@ def sum_name_scores(names):
             alphabetical_value += ord(char) - 96
 
         sum += (i + 1) * alphabetical_value
+
+    return sum
+
+
+# Problem 23
+# Return the sum of all abundant numbers up to a limit
+def abundant_numbers(limit):
+    numbers = []
+    for i in range(1, limit):
+        if divisor_sum(i) > i:
+            numbers.append(i)
+
+    return numbers
+
+
+# Return whether or not a number can be written as the sum of 2 abundant numbers
+def is_sum_of_abundant_numbers(number, all_abundant_numbers):
+    for abundant_number in all_abundant_numbers:
+        # No 2 numbers greater than half a number can sum to said number
+        if abundant_number > number // 2:
+            return False
+        elif number - abundant_number not in all_abundant_numbers:
+            continue
+
+        return True
+
+
+# Return the sum of all numbers that aren't the sum of 2 abundant numbers
+def sum_of_non_abundant_summable_numbers():
+    numbers = set(abundant_numbers(28123))
+    sum = 0
+    for i in range(1, 28123):
+        if not is_sum_of_abundant_numbers(i, numbers):
+            sum += i
 
     return sum
