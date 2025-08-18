@@ -348,3 +348,22 @@ def sum_of_non_abundant_summable_numbers():
             sum += i
 
     return sum
+
+
+# Problem 24
+# Return the nth lexicographic permutation
+def lexicographic_permutation(n):
+    numerator = n - 1
+    digits = ""
+    possible_digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # Use the factorial of each number to determine which digit it should be
+    for i in range(9, 0, -1):
+        index = numerator // factorial(i)
+        digits += str(possible_digits[index])
+        possible_digits.pop(index)
+        numerator = numerator % factorial(i)
+
+    # Only one number should remain
+    digits += str(possible_digits[0])
+
+    return int(digits)
