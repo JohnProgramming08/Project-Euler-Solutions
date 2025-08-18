@@ -367,3 +367,23 @@ def lexicographic_permutation(n):
     digits += str(possible_digits[0])
 
     return int(digits)
+
+
+# Problem 25
+# Return the index of the first fibonacci number with n digits
+def nth_digit_fibonacci_number(n):
+    current_number = 1
+    previous_number = 1
+    next_number = 1
+    sequence = []
+
+    # Create a fibonnaci sequence up to the limit given
+    while len(str(next_number)) != n:
+        sequence.append(next_number)
+        if len(sequence) > 1:
+            previous_number = sequence[-2]
+        current_number = next_number
+        next_number = current_number + previous_number
+
+    # As only one 1 was added to the sequence and next_number isnt in sequence
+    return len(sequence) + 2
